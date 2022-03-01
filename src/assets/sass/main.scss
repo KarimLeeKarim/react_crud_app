@@ -1,0 +1,12 @@
+@import "./settings/reset";
+@import "./settings/typography";
+@import "pagination";
+@import "item_list";
+@import "modal";
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e6e6e9;
+  font-family: $smooch;
+}

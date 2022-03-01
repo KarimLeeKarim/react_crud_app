@@ -1,0 +1,31 @@
+.pagination{
+    display: flex;
+    padding-bottom: 15px;
+    font-weight: 600;
+    & li a{
+        margin: 0 10px;  
+        cursor: pointer;
+
+    }
+    .active__page{
+        border-radius:50px;
+        background-color:blue;
+        color:#fff;
+    }
+
+    .previous, .next{
+        border: 1px solid black;
+        cursor: pointer;
+        margin: 0 10px;
+        transition: .5s;
+        &:hover{
+            background-color: black;
+            color:#fff
+        }
+    }
+
+    .disabled{
+        color: rgb(153, 150, 150);
+        pointer-events: none;
+    }
+}
