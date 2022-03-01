@@ -5,5 +5,6 @@ export const url = {
 export const text = {
     load : '...Loading',
     noData: 'unable to get data',
-    delete: 'Delete'
+    delete: 'Delete',
+    list: 'unable to get list'
 }

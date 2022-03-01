@@ -1,3 +1,4 @@
+import { text } from "../../configs/url";
 import {
   ITEM_LIST_FAILED,
   ITEM_LIST_LOADING,
@@ -23,7 +24,7 @@ const ItemListReducer = (state = InitialState, { type, payload }) => {
       return {
         ...state,
         loading: false,
-        errorMsg: "unable to get pokemon",
+        errorMsg: text.list,
       };
     case ITEM_LIST_SUCCESS:
       return {
