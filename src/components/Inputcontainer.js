@@ -11,9 +11,6 @@ export const Inputcontainer = ({
   const onChangeHandler = (event) => {
     event.preventDefault();
     setInputValue(() => event.target.value);
-    if (event.target.value === "") {
-      return setUpdatedData(itemList.data);
-    }
   };
 
   return (
@@ -28,7 +25,7 @@ export const Inputcontainer = ({
         className="input__container__btnDelete"
         disabled={!inputValue || inputValue === "0" || inputValue > 100}
         onClick={() => {
-          filterListItemById(inputValue);
+          filterListItemById();
         }}
       >
         {text.find}

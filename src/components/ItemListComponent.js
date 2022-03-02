@@ -20,7 +20,7 @@ export const ItemListComponent = () => {
 
   useEffect(() => {
     setUpdatedData(itemList.data);
-  }, [itemList.data]);
+  }, [itemList.data ]);
 
   useEffect(() => {
     dispatch(PageCount(Math.ceil(updateData.length / itemsPerPage)));
@@ -31,8 +31,8 @@ export const ItemListComponent = () => {
     dispatch(CurrentPage(selectedPage + 1));
   };
 
-  const filterListItemById = (inputValue) => {
-    let filteredData = updateData.filter((el) => {
+  const filterListItemById = () => {
+    let filteredData = itemList.data.filter((el) => {
       return el.albumId === +inputValue;
     });
     setUpdatedData(filteredData);
