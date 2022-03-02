@@ -8,4 +8,6 @@ export const text = {
     delete: 'Delete',
     list: 'unable to get list',
     find: 'Find',
+    all: 'All',
+    albumId: 'Album'
 }

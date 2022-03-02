@@ -31,15 +31,17 @@ export const ItemComponent = ({
               alt={element.id}
               className={"item-content__img"}
             />
-            <h3 className={"item-content__id"}>Album - {element.albumId}</h3>
+            <h3 className={"item-content__id"}>
+              {text.albumId} - {element.albumId}
+            </h3>
             <p className={"item-content__title"}>{element.title}</p>
 
             <button
               className={"item-content__btn"}
               onClick={() => {
-                  dispatch(DeleteCard(element.id))
-                  dispatch(CurrentPage(currentPage))
-                }}
+                dispatch(DeleteCard(element.id));
+                dispatch(CurrentPage(currentPage));
+              }}
             >
               {text.delete}
             </button>

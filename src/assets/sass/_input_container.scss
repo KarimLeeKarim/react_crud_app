@@ -1,0 +1,21 @@
+.input__container {
+  width: 100%;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  margin: 15px 0 0 0;
+
+  &__btnDelete,
+  &__btnGetAll {
+    @include custom_btn;
+  }
+  
+  &__btnDelete {
+    margin: 0 10px;
+  }
+
+  button:disabled,
+  button[disabled] {
+    pointer-events: none;
+  }
+}

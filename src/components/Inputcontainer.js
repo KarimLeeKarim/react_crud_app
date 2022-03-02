@@ -1,21 +1,44 @@
 import React from "react";
 import { text } from "../configs/url";
 
-export const Inputcontainer = ({ inputValue, onChangeHandler, findAlbumId }) => {
+export const Inputcontainer = ({
+  inputValue,
+  filterListItemById,
+  setInputValue,
+  setUpdatedData,
+  itemList,
+}) => {
+  const onChangeHandler = (event) => {
+    event.preventDefault();
+    setInputValue(() => event.target.value);
+    if (event.target.value === "") {
+      return setUpdatedData(itemList.data);
+    }
+  };
+
   return (
-    <div>
+    <div className="input__container">
       <input
-        type="number"
-        pattern="^[0–9]$"
-        min="1"
-        max="100"
+        type="text"
         onChange={onChangeHandler}
         value={inputValue}
         className="input"
       />
-      <button 
-    //   disabled={!inputValue || inputValue === "0" || !inputValue > "100"}
-      onClick={()=>findAlbumId()}>{text.find}</button>
+      <button
+        className="input__container__btnDelete"
+        disabled={!inputValue || inputValue === "0" || inputValue > 100}
+        onClick={() => {
+          filterListItemById(inputValue);
+        }}
+      >
+        {text.find}
+      </button>
+      <button
+        className="input__container__btnGetAll"
+        onClick={() => setUpdatedData(itemList.data)}
+      >
+        {text.all}
+      </button>
     </div>
   );
 };

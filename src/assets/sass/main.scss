@@ -1,7 +1,9 @@
 @import "./settings/reset";
 @import "./settings/typography";
+@import "./settings/mixin";
 @import "pagination";
 @import "item_list";
+@import "input_container";
 @import "modal";
 
 html {

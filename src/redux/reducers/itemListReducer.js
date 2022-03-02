@@ -5,6 +5,7 @@ import {
   ITEM_LIST_SUCCESS,
   ITEM_DELETE,
   CURRENT_PAGE,
+  PAGE_COUNT,
 } from "../constant";
 
 const InitialState = {
@@ -12,6 +13,7 @@ const InitialState = {
   data: [],
   errorMsg: "",
   page: 1,
+  countPage: 0,
 };
 
 const ItemListReducer = (state = InitialState, { type, payload }) => {
@@ -43,12 +45,19 @@ const ItemListReducer = (state = InitialState, { type, payload }) => {
         data: deletedItem,
         errorMsg: "",
       };
-      case CURRENT_PAGE:
+    case CURRENT_PAGE:
       return {
         ...state,
         loading: false,
-        page: payload
-      }
+        page: payload,
+      };
+    case PAGE_COUNT:
+      return {
+        ...state,
+        loading: false,
+        countPage: payload,
+      };
+
     default:
       return state;
   }

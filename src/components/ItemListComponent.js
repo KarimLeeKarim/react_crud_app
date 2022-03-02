@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Modal } from "./ModalWindow/Modal";
-import _ from "lodash";
 import { useDispatch, useSelector } from "react-redux";
-import { ItemComponent } from "./ItemComponent";
+import { CurrentPage, PageCount } from "../redux/actions/itemActions";
 import ReactPaginate from "react-paginate";
-import { text } from "../configs/url";
+import _ from "lodash";
+import { Modal } from "./ModalWindow/Modal";
+import { ItemComponent } from "./ItemComponent";
 import { Inputcontainer } from "./Inputcontainer";
-import { CurrentPage } from "../redux/actions/itemActions";
+import { text } from "../configs/url";
 
 export const ItemListComponent = () => {
   const itemList = useSelector((state) => state.ItemList);
@@ -14,8 +14,7 @@ export const ItemListComponent = () => {
 
   const [modalActive, setModalActive] = useState(false);
   const [picture, setPicture] = useState("");
-  const [itemsPerPage] = useState(5);
-  const [pageCount, setPageCount] = useState(0);
+  const [itemsPerPage] = useState(12);
   const [inputValue, setInputValue] = useState("");
   const [updateData, setUpdatedData] = useState([]);
 
@@ -24,30 +23,20 @@ export const ItemListComponent = () => {
   }, [itemList.data]);
 
   useEffect(() => {
-    setPageCount(Math.ceil(updateData.length / itemsPerPage));
+    dispatch(PageCount(Math.ceil(updateData.length / itemsPerPage)));
   }, [updateData]);
 
   const handlePageClick = (event) => {
     const selectedPage = event.selected;
     dispatch(CurrentPage(selectedPage + 1));
   };
-  const onChangeHandler = (event) => {
-    event.preventDefault();
-    setInputValue(() => event.target.value);
-    if (event.target.value === "") {
-      return setUpdatedData(itemList.data);
-    }
-  };
 
-  const findAlbumId = () => {
-    if (inputValue === "") {
-      return setUpdatedData(itemList.data);
-    } else {
-      let x = updateData.filter((el) => {
-        return el.albumId === +inputValue;
-      });
-      setUpdatedData(x);
-    }
+  const filterListItemById = (inputValue) => {
+    let filteredData = updateData.filter((el) => {
+      return el.albumId === +inputValue;
+    });
+    setUpdatedData(filteredData);
+    setInputValue("");
   };
 
   if (itemList.loading) {
@@ -59,8 +48,10 @@ export const ItemListComponent = () => {
       <>
         <Inputcontainer
           inputValue={inputValue}
-          onChangeHandler={onChangeHandler}
-          findAlbumId={findAlbumId}
+          setInputValue={setInputValue}
+          setUpdatedData={setUpdatedData}
+          itemList={itemList}
+          filterListItemById={filterListItemById}
         />
         <ItemComponent
           item={updateData}
@@ -74,7 +65,7 @@ export const ItemListComponent = () => {
           nextLabel={"next"}
           breakLabel={"..."}
           breakClassName={"break-pages"}
-          pageCount={pageCount}
+          pageCount={itemList.countPage}
           onPageChange={handlePageClick}
           containerClassName={"pagination"}
           subContainerClassName={"pages pagination"}

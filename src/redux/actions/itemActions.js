@@ -5,6 +5,7 @@ import {
   ITEM_LIST_SUCCESS,
   ITEM_DELETE,
   CURRENT_PAGE,
+  PAGE_COUNT,
 } from "../constant";
 
 export const GetItemList = () => async (dispatch) => {
@@ -52,11 +53,14 @@ export const DeleteCard = (cardId) => async (dispatch) => {
 
 export const CurrentPage = (page) => (dispatch) => {
   dispatch({
-    type: ITEM_LIST_LOADING,
-  });
-
-  dispatch({
     type: CURRENT_PAGE,
     payload: page,
   });
 };
+
+export const PageCount = (countPage) => (dispatch) => {
+    dispatch({
+      type: PAGE_COUNT,
+      payload: countPage,
+    });
+  };
