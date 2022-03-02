@@ -9,6 +9,8 @@ export const ItemComponent = ({ item, setModalActive, setPicture }) => {
   return (
     <div className={"item__list"}>
       {item.map((element) => {
+        //   console.log(element.albumId);
+        //   console.log(element.id);
         return (
           <div key={element.id} className={"item-content"}>
             <img
@@ -18,7 +20,6 @@ export const ItemComponent = ({ item, setModalActive, setPicture }) => {
               }}
               src={element.thumbnailUrl}
               alt={element.id}
-              key={element.id}
               className={"item-content__img"}
             />
             <h3 className={"item-content__id"}>Album - {element.albumId}</h3>

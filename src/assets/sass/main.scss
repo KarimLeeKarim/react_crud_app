@@ -3,10 +3,17 @@
 @import "pagination";
 @import "item_list";
 @import "modal";
+
+html {
+  background-color: #e6e6e9;
+}
+
 #root {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   background-color: #e6e6e9;
   font-family: $smooch;
+  height: 100vh;
 }

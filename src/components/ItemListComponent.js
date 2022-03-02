@@ -17,19 +17,17 @@ export const ItemListComponent = () => {
 
   useEffect(() => {
     setPageCount(Math.ceil(itemList.data.length / itemsPerPage));
-  }, [itemList]);
+  }, [itemList.data]);
 
   const sliceData = itemList.data.slice(
-    currentPage - 1,
-    currentPage - 1 + itemsPerPage
+    (currentPage - 1)* itemsPerPage + 0,
+    (currentPage - 1)* itemsPerPage + itemsPerPage
   );
 
   const handlePageClick = (event) => {
     const selectedPage = event.selected;
     setCurrentPage(selectedPage + 1);
   };
-
-
 
   if (itemList.loading) {
     return <p>{text.load}</p>;
@@ -38,6 +36,11 @@ export const ItemListComponent = () => {
   if (!_.isEmpty(itemList.data)) {
     return (
       <>
+        {/* <div>
+          {itemList.data.map((id) => (
+            <p>{id.albumId}</p>
+          ))}
+        </div> */}
         <ItemComponent
           item={sliceData}
           setModalActive={setModalActive}
