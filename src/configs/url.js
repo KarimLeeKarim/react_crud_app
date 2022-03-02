@@ -1,10 +1,11 @@
 export const url = {
-    getDataList : 'http://jsonplaceholder.typicode.com/photos'
+    getDataList : 'https://jsonplaceholder.typicode.com/photos'
 }
 
 export const text = {
     load : '...Loading',
     noData: 'unable to get data',
     delete: 'Delete',
-    list: 'unable to get list'
+    list: 'unable to get list',
+    find: 'Find',
 }

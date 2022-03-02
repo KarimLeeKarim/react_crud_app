@@ -4,12 +4,14 @@ import {
   ITEM_LIST_LOADING,
   ITEM_LIST_SUCCESS,
   ITEM_DELETE,
+  CURRENT_PAGE,
 } from "../constant";
 
 const InitialState = {
   loading: false,
   data: [],
   errorMsg: "",
+  page: 1,
 };
 
 const ItemListReducer = (state = InitialState, { type, payload }) => {
@@ -41,6 +43,12 @@ const ItemListReducer = (state = InitialState, { type, payload }) => {
         data: deletedItem,
         errorMsg: "",
       };
+      case CURRENT_PAGE:
+      return {
+        ...state,
+        loading: false,
+        page: payload
+      }
     default:
       return state;
   }

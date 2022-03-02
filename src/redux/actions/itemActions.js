@@ -4,6 +4,7 @@ import {
   ITEM_LIST_LOADING,
   ITEM_LIST_SUCCESS,
   ITEM_DELETE,
+  CURRENT_PAGE,
 } from "../constant";
 
 export const GetItemList = () => async (dispatch) => {
@@ -47,4 +48,15 @@ export const DeleteCard = (cardId) => async (dispatch) => {
       type: ITEM_LIST_FAILED,
     });
   }
+};
+
+export const CurrentPage = (page) => (dispatch) => {
+  dispatch({
+    type: ITEM_LIST_LOADING,
+  });
+
+  dispatch({
+    type: CURRENT_PAGE,
+    payload: page,
+  });
 };

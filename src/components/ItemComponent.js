@@ -1,16 +1,25 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { text } from "../configs/url";
-import { DeleteCard } from "../redux/actions/itemActions";
+import { CurrentPage, DeleteCard } from "../redux/actions/itemActions";
 
-export const ItemComponent = ({ item, setModalActive, setPicture }) => {
+export const ItemComponent = ({
+  item,
+  setModalActive,
+  setPicture,
+  currentPage,
+  itemsPerPage,
+}) => {
   const dispatch = useDispatch();
+
+  const sliceData = item.slice(
+    (currentPage - 1) * itemsPerPage + 0,
+    (currentPage - 1) * itemsPerPage + itemsPerPage
+  );
 
   return (
     <div className={"item__list"}>
-      {item.map((element) => {
-        //   console.log(element.albumId);
-        //   console.log(element.id);
+      {sliceData.map((element) => {
         return (
           <div key={element.id} className={"item-content"}>
             <img
@@ -27,7 +36,10 @@ export const ItemComponent = ({ item, setModalActive, setPicture }) => {
 
             <button
               className={"item-content__btn"}
-              onClick={() => dispatch(DeleteCard(element.id))}
+              onClick={() => {
+                  dispatch(DeleteCard(element.id))
+                  dispatch(CurrentPage(currentPage))
+                }}
             >
               {text.delete}
             </button>
