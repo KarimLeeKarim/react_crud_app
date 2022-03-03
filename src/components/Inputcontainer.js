@@ -8,14 +8,11 @@ export const Inputcontainer = ({
   setUpdatedData,
   itemList,
 }) => {
-
   const byPressEnterFilterId = (event) => {
-    // if (!inputValue || inputValue === "0" || inputValue > 100) {
-    if (event.keyCode === 13) {
+    if (event.keyCode === 13 && inputValue.length > 0) {
       event.preventDefault();
       filterListItemById(inputValue);
     }
-    // }
   };
 
   useEffect(() => {
@@ -44,7 +41,7 @@ export const Inputcontainer = ({
         className="input__container__btnDelete"
         disabled={!inputValue || inputValue === "0" || inputValue > 100}
         onClick={() => {
-            filterListItemById(inputValue);
+          filterListItemById(inputValue);
         }}
       >
         {text.find}
