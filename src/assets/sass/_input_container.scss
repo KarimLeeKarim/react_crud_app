@@ -5,6 +5,12 @@
   justify-content: center;
   margin: 15px 0 0 0;
 
+  input[type=text], select{
+    padding: 0px 5px;
+    font-family: $smooch;
+    box-sizing: border-box;
+  }
+
   &__btnDelete,
   &__btnGetAll {
     @include custom_btn;

@@ -28,6 +28,10 @@
         display: flex;
         justify-content: center;
 
+        img{
+            width: 100%;;
+        }
+
         &.active{
             transform: scale(1)
         }
