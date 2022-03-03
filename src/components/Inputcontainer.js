@@ -9,7 +9,7 @@ export const Inputcontainer = ({
   itemList,
 }) => {
   const byPressEnterFilterId = (event) => {
-    if (event.keyCode === 13 && inputValue.length > 0) {
+    if (event.keyCode === 13 && inputValue.length > 0 && inputValue <= 100) {
       event.preventDefault();
       filterListItemById(inputValue);
     }
