@@ -48,14 +48,14 @@ const ItemListReducer = (state = InitialState, { type, payload }) => {
     case CURRENT_PAGE:
       return {
         ...state,
-        loading: false,
         page: payload,
+        errorMsg: "",
       };
     case PAGE_COUNT:
       return {
         ...state,
-        loading: false,
         countPage: payload,
+        errorMsg: "",
       };
 
     default:

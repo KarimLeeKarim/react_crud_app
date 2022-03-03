@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { text } from "../configs/url";
 
 export const Inputcontainer = ({
@@ -8,6 +8,25 @@ export const Inputcontainer = ({
   setUpdatedData,
   itemList,
 }) => {
+
+  const byPressEnterFilterId = (event) => {
+    // if (!inputValue || inputValue === "0" || inputValue > 100) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      filterListItemById(inputValue);
+    }
+    // }
+  };
+
+  useEffect(() => {
+    let input = document.querySelector(".input");
+    input.addEventListener("keydown", byPressEnterFilterId);
+
+    return () => {
+      input.removeEventListener("keydown", byPressEnterFilterId);
+    };
+  });
+
   const onChangeHandler = (event) => {
     event.preventDefault();
     setInputValue(() => event.target.value);
@@ -25,7 +44,7 @@ export const Inputcontainer = ({
         className="input__container__btnDelete"
         disabled={!inputValue || inputValue === "0" || inputValue > 100}
         onClick={() => {
-          filterListItemById();
+            filterListItemById(inputValue);
         }}
       >
         {text.find}

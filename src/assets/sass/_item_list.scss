@@ -1,8 +1,9 @@
 .item__list {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: flex-start;
 
   .item-content {
     display: flex;

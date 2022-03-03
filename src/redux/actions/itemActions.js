@@ -30,10 +30,6 @@ export const GetItemList = () => async (dispatch) => {
 
 export const DeleteCard = (cardId) => async (dispatch) => {
   try {
-    dispatch({
-      type: ITEM_LIST_LOADING,
-    });
-
     const res = await fetch(`${url.getDataList}/${cardId}`, {
       method: "DELETE",
     });
@@ -41,9 +37,13 @@ export const DeleteCard = (cardId) => async (dispatch) => {
 
     if (status === 200)
       dispatch({
-        type: ITEM_DELETE,
-        payload: cardId,
+        type: ITEM_LIST_LOADING,
       });
+
+    dispatch({
+      type: ITEM_DELETE,
+      payload: cardId,
+    });
   } catch (e) {
     dispatch({
       type: ITEM_LIST_FAILED,
@@ -59,8 +59,8 @@ export const CurrentPage = (page) => (dispatch) => {
 };
 
 export const PageCount = (countPage) => (dispatch) => {
-    dispatch({
-      type: PAGE_COUNT,
-      payload: countPage,
-    });
-  };
+  dispatch({
+    type: PAGE_COUNT,
+    payload: countPage,
+  });
+};

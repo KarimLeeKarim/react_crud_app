@@ -6,6 +6,7 @@ import _ from "lodash";
 import { Modal } from "./ModalWindow/Modal";
 import { ItemComponent } from "./ItemComponent";
 import { Inputcontainer } from "./Inputcontainer";
+import { Loading } from "./Loading";
 import { text } from "../configs/url";
 
 export const ItemListComponent = () => {
@@ -20,7 +21,7 @@ export const ItemListComponent = () => {
 
   useEffect(() => {
     setUpdatedData(itemList.data);
-  }, [itemList.data ]);
+  }, [itemList.data]);
 
   useEffect(() => {
     dispatch(PageCount(Math.ceil(updateData.length / itemsPerPage)));
@@ -31,16 +32,17 @@ export const ItemListComponent = () => {
     dispatch(CurrentPage(selectedPage + 1));
   };
 
-  const filterListItemById = () => {
+  const filterListItemById = (value) => {
     let filteredData = itemList.data.filter((el) => {
-      return el.albumId === +inputValue;
+      return el.albumId === +value;
     });
+    dispatch(CurrentPage(1));
     setUpdatedData(filteredData);
     setInputValue("");
   };
 
-  if (itemList.loading) {
-    return <p>{text.load}</p>;
+  if (_.isEmpty(itemList.data)) {
+    <p>{text.noData}</p>;
   }
 
   if (!_.isEmpty(itemList.data)) {
@@ -60,17 +62,19 @@ export const ItemListComponent = () => {
           currentPage={itemList.page}
           itemsPerPage={itemsPerPage}
         />
-        <ReactPaginate
-          previousLabel={"previous"}
-          nextLabel={"next"}
-          breakLabel={"..."}
-          breakClassName={"break-pages"}
-          pageCount={itemList.countPage}
-          onPageChange={handlePageClick}
-          containerClassName={"pagination"}
-          subContainerClassName={"pages pagination"}
-          activeClassName={"active__page"}
-        />
+        {!_.isEmpty(itemList.data) && (
+          <ReactPaginate
+            previousLabel={"previous"}
+            nextLabel={"next"}
+            breakLabel={"..."}
+            breakClassName={"break-pages"}
+            pageCount={itemList.countPage}
+            onPageChange={handlePageClick}
+            containerClassName={"pagination"}
+            subContainerClassName={"pages pagination"}
+            activeClassName={"active__page"}
+          />
+        )}
         <Modal
           active={modalActive}
           setActive={setModalActive}
@@ -84,5 +88,5 @@ export const ItemListComponent = () => {
     return <p>{itemList.errorMsg}</p>;
   }
 
-  return <p>{text.noData}</p>;
+  return <Loading />;
 };
