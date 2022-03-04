@@ -2,11 +2,13 @@
   display: flex;
   padding-bottom: 15px;
   font-weight: 600;
+  width: 100%;
+  justify-content: center;
   & li {
     cursor: pointer;
   }
   & li a {
-    padding: 0 10px;
+    padding: 0 5px;
   }
   .active__page {
     border-radius: 50px;
@@ -17,7 +19,10 @@
   .previous,
   .next {
     @include custom_btn;
-    margin: 0 10px;
+    margin: 0 20px;
+    @include respond(phone) {
+      margin: 0 5px;
+    }
   }
 
   .disabled {

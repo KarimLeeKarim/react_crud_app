@@ -64,8 +64,8 @@ export const ItemListComponent = () => {
         />
         {!_.isEmpty(itemList.data) && (
           <ReactPaginate
-            previousLabel={"previous"}
-            nextLabel={"next"}
+            previousLabel={"<<"}
+            nextLabel={">>"}
             breakLabel={"..."}
             breakClassName={"break-pages"}
             pageCount={itemList.countPage}
