@@ -1,9 +1,12 @@
 .item__list {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
-    align-items: flex-start;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: flex-start;
+  @include respond(phone) {
+    justify-content: center;
+  }
 
   .item-content {
     display: flex;
@@ -32,7 +35,7 @@
       border-radius: 50%;
       cursor: pointer;
     }
-    
+
     &__btn {
       position: absolute;
       bottom: 0;
